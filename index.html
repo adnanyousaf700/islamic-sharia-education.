@@ -1,0 +1,250 @@
+
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#064e3b">
+<title>اسلامی شریعہ تعلیم</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f2f7f2;color:#18352a;font-family:Arial,sans-serif}
+header{background:linear-gradient(135deg,#064e3b,#087f5b);color:white;padding:27px 18px;text-align:center;border-radius:0 0 28px 28px}
+header .moon{font-size:38px}
+header h1{font-size:25px;margin:8px 0}
+header p{margin:8px 0;color:#e1f5e9}
+nav{display:flex;gap:8px;overflow-x:auto;padding:12px;background:#fff;position:sticky;top:0;z-index:5}
+nav button{flex-shrink:0;border:0;border-radius:20px;padding:10px 14px;background:#e1f3e8;color:#065f46;font-size:14px}
+main{max-width:720px;margin:auto;padding:16px}
+h2{font-size:21px}
+.card{background:white;border-radius:17px;padding:17px;margin:12px 0;box-shadow:0 3px 12px #1231}
+.card h3{color:#087653;margin-top:0}
+.card p,.card li{line-height:1.9}
+.small{color:#617568;font-size:13px}
+button{cursor:pointer}
+.action{background:#087653;color:white;border:0;border-radius:10px;padding:12px 16px;font-size:15px}
+.lesson{width:100%;text-align:right;background:#fff;border:1px solid #d6e8dc;border-radius:13px;padding:15px;margin:6px 0;color:#174d38;font-size:16px}
+.lesson span{display:block;color:#688174;font-size:13px;margin-top:5px}
+#content{line-height:2}
+.option{display:block;width:100%;text-align:right;margin:9px 0;padding:13px;border:1px solid #d6e8dc;border-radius:10px;background:#f8fbf8;color:#18352a}
+.option:focus,.option:hover{background:#e1f3e8}
+footer{text-align:center;padding:25px;color:#60766b;font-size:13px}
+</style>
+</head>
+<body>
+<header>
+<div class="moon">☪️</div>
+<h1>اسلامی شریعہ تعلیم</h1>
+<p>علم حاصل کریں، اچھے اخلاق اپنائیں</p>
+<p>📖 قرآن و سنت کی روشنی میں بنیادی تعلیم</p>
+</header>
+
+<nav>
+<button onclick="home()">🏠 ہوم</button>
+<button onclick="showLessons()">📚 اسباق</button>
+<button onclick="showQuiz()">📝 کوئز</button>
+<button onclick="showDua()">🤲 دعائیں</button>
+</nav>
+
+<main id="app"></main>
+
+<footer>
+اسلامی تعلیم و تربیت کے لیے ایک ابتدائی تعلیمی ایپ<br>
+فقہی اختلافات میں مستند عالم سے رہنمائی حاصل کریں۔
+</footer>
+
+<script>
+const lessons=[
+{
+title:"اسلام کے پانچ ارکان",
+desc:"اسلام کی بنیادی بنیادیں",
+body:`<h3>اسلام کے پانچ ارکان</h3>
+<ol>
+<li>شہادت: اللہ کے سوا کوئی معبودِ برحق نہیں اور محمد ﷺ اللہ کے رسول ہیں۔</li>
+<li>نماز: روزانہ پانچ فرض نمازیں ادا کرنا۔</li>
+<li>زکوٰۃ: شرائط پوری ہونے پر واجب زکوٰۃ ادا کرنا۔</li>
+<li>روزہ: رمضان کے فرض روزے رکھنا۔</li>
+<li>حج: استطاعت رکھنے والے کے لیے زندگی میں ایک مرتبہ حج کرنا۔</li>
+</ol>
+<p><b>سبق:</b> اسلام میں ایمان، عبادت اور اچھے اعمال کی اہمیت ہے۔</p>
+<p class="small">حوالہ: صحیح بخاری، حدیث 8؛ صحیح مسلم، حدیث 16۔</p>`
+},
+{
+title:"وضو کا طریقہ",
+desc:"نماز سے پہلے طہارت",
+body:`<h3>وضو کیسے کریں؟</h3>
+<ol>
+<li>وضو کی نیت دل میں کریں۔</li>
+<li>بسم اللہ پڑھیں۔</li>
+<li>دونوں ہاتھ دھوئیں۔</li>
+<li>کلی کریں اور ناک میں پانی ڈال کر صاف کریں۔</li>
+<li>چہرہ دھوئیں۔</li>
+<li>دونوں بازو کہنیوں سمیت دھوئیں۔</li>
+<li>سر کا مسح کریں اور کانوں کا مسح بھی کریں۔</li>
+<li>دونوں پاؤں ٹخنوں سمیت دھوئیں۔</li>
+</ol>
+<p>اعضا کی تعداد، ترتیب اور بعض تفصیلات میں فقہی رہنمائی کے لیے اپنے مسلک کے مستند عالم سے رجوع کریں۔</p>
+<p class="small">حوالہ: قرآن، سورۃ المائدہ 5:6۔</p>`
+},
+{
+title:"پانچ وقت کی نماز",
+desc:"فرض نمازوں کے نام",
+body:`<h3>روزانہ کی پانچ فرض نمازیں</h3>
+<ul>
+<li>فجر — صبح</li>
+<li>ظہر — دوپہر</li>
+<li>عصر — سہ پہر</li>
+<li>مغرب — غروبِ آفتاب کے بعد</li>
+<li>عشاء — رات</li>
+</ul>
+<p>نماز کے اوقات شہر اور تاریخ کے مطابق بدلتے ہیں۔ درست وقت کے لیے مقامی معتبر نماز ٹائم ٹیبل دیکھیں۔</p>
+<p>نماز کے طریقے کی تفصیل سیکھنے کے لیے مستند استاد یا عالم سے بھی رہنمائی لیں۔</p>
+<p class="small">حوالہ: قرآن، سورۃ النساء 4:103۔</p>`
+},
+{
+title:"اسلامی اخلاق",
+desc:"سچائی، امانت اور حسنِ سلوک",
+body:`<h3>اچھے مسلمان کی صفات</h3>
+<ul>
+<li>ہمیشہ سچ بولنے کی کوشش کریں۔</li>
+<li>والدین کے ساتھ ادب اور حسنِ سلوک کریں۔</li>
+<li>امانت میں خیانت نہ کریں۔</li>
+<li>دوسروں کی غیبت اور تضحیک سے بچیں۔</li>
+<li>ضرورت مندوں کی مدد کریں۔</li>
+<li>غلطی ہو تو معافی مانگیں اور اصلاح کریں۔</li>
+</ul>
+<p class="small">حوالہ: قرآن، سورۃ النحل 16:90۔</p>`
+},
+{
+title:"روزے کی بنیادی تعلیم",
+desc:"رمضان اور روزے کا مقصد",
+body:`<h3>روزہ کیوں رکھا جاتا ہے؟</h3>
+<p>رمضان کے روزے مسلمانوں پر فرض ہیں، سوائے ان لوگوں کے جن کے لیے شریعت نے عذر یا رخصت رکھی ہے۔</p>
+<ul>
+<li>سحری فجر سے پہلے کی جاتی ہے۔</li>
+<li>روزے میں فجر سے غروبِ آفتاب تک کھانے پینے اور دیگر روزہ توڑنے والی چیزوں سے بچا جاتا ہے۔</li>
+<li>جھوٹ، بدزبانی اور برے اعمال سے بھی بچنے کی کوشش کریں۔</li>
+<li>افطار غروبِ آفتاب کے بعد کیا جاتا ہے۔</li>
+</ul>
+<p class="small">حوالہ: قرآن، سورۃ البقرہ 2:183–187۔</p>`
+},
+{
+title:"قرآن مجید کی اہمیت",
+desc:"تلاوت، سمجھ اور عمل",
+body:`<h3>قرآن سے تعلق کیسے بڑھائیں؟</h3>
+<ul>
+<li>روزانہ اپنی سہولت کے مطابق قرآن پڑھیں۔</li>
+<li>تجوید درست کرنے کے لیے استاد سے سیکھیں۔</li>
+<li>ترجمہ اور معتبر تفسیر سے معنی سمجھیں۔</li>
+<li>قرآن کی تعلیمات پر عمل کرنے کی کوشش کریں۔</li>
+</ul>
+<p>قرآن کی تفسیر یا کسی شرعی مسئلے میں صرف غیرمستند سوشل میڈیا پوسٹ پر انحصار نہ کریں۔</p>
+<p class="small">حوالہ: قرآن، سورۃ ص 38:29۔</p>`
+}
+];
+
+const questions=[
+{q:"اسلام کے بنیادی ارکان کتنے ہیں؟",a:["تین","پانچ","سات"],correct:1},
+{q:"روزانہ کتنی فرض نمازیں ہیں؟",a:["تین","چار","پانچ"],correct:2},
+{q:"رمضان کے روزوں کا ذکر کس سورت میں ہے؟",a:["البقرہ","الفیل","الکوثر"],correct:0},
+{q:"وضو کی تعلیم کس آیت میں بیان ہوئی ہے؟",a:["المائدہ 5:6","الفاتحہ 1:1","الاخلاص 112:1"],correct:0},
+{q:"قرآن مجید کس زبان میں نازل ہوا؟",a:["فارسی","عربی","اردو"],correct:1}
+];
+
+function home(){
+document.getElementById("app").innerHTML=`
+<h2>السلام علیکم! 🌙</h2>
+<div class="card">
+<h3>خوش آمدید</h3>
+<p>اپنی اسلامی معلومات بڑھانے کے لیے ایک سبق منتخب کریں۔</p>
+<button class="action" onclick="showLessons()">اسباق شروع کریں</button>
+</div>
+<div class="card">
+<h3>📚 سیکھنے کے موضوعات</h3>
+<p>اسلام کے ارکان، وضو، نماز، روزہ، قرآن اور اسلامی اخلاق۔</p>
+</div>
+<div class="card">
+<h3>📝 اپنے علم کو آزمائیں</h3>
+<p>مختصر کوئز حل کرکے اپنی معلومات جانچیں۔</p>
+<button class="action" onclick="showQuiz()">کوئز شروع کریں</button>
+</div>
+<div class="card">
+<h3>🤲 آج کا پیغام</h3>
+<p>سچائی، امانت اور دوسروں کے ساتھ حسنِ سلوک اپنائیں۔</p>
+</div>`;
+}
+
+function showLessons(){
+let html="<h2>📚 اسلامی اسباق</h2><p>جس موضوع کو پڑھنا چاہتے ہیں اسے منتخب کریں۔</p>";
+lessons.forEach((l,i)=>{
+html+=`<button class="lesson" onclick="openLesson(${i})">📖 ${l.title}<span>${l.desc}</span></button>`;
+});
+document.getElementById("app").innerHTML=html;
+}
+
+function openLesson(i){
+document.getElementById("app").innerHTML=`
+<button class="action" onclick="showLessons()">← تمام اسباق</button>
+<div class="card" id="content"><h2>${lessons[i].title}</h2>${lessons[i].body}</div>`;
+window.scrollTo(0,0);
+}
+
+function showDua(){
+document.getElementById("app").innerHTML=`
+<h2>🤲 مسنون دعا</h2>
+<div class="card">
+<h3>علم میں اضافے کی دعا</h3>
+<p dir="rtl" style="font-size:27px;text-align:center">رَبِّ زِدْنِي عِلْمًا</p>
+<p>ترجمہ: اے میرے رب! میرے علم میں اضافہ فرما۔</p>
+<p class="small">حوالہ: قرآن، سورۃ طٰہٰ 20:114۔</p>
+</div>
+<div class="card">
+<h3>سلام کی اہمیت</h3>
+<p>مسلمانوں کو ایک دوسرے کے ساتھ محبت اور خیرخواہی کا رویہ اپنانا چاہیے۔ ملاقات پر سلام کرنا اچھا اسلامی عمل ہے۔</p>
+</div>`;
+}
+
+let qi=0,score=0,answered=false;
+function showQuiz(){
+qi=0;score=0;renderQuestion();
+}
+function renderQuestion(){
+answered=false;
+if(qi>=questions.length){
+document.getElementById("app").innerHTML=`
+<div class="card" style="text-align:center">
+<h2>🎉 کوئز مکمل!</h2>
+<p>تمہارا اسکور: <b>${score} / ${questions.length}</b></p>
+<p>${score===questions.length?"ماشاءاللہ! تمام جواب درست ہیں۔":"اچھا کام! دوبارہ کوشش کرو اور اسباق پڑھو۔"}</p>
+<button class="action" onclick="showQuiz()">دوبارہ کوئز دو</button>
+<button class="action" onclick="home()">ہوم</button>
+</div>`;
+return;
+}
+let q=questions[qi];
+let html=`<h2>📝 اسلامی کوئز</h2>
+<div class="card">
+<p class="small">سوال ${qi+1} از ${questions.length}</p>
+<h3>${q.q}</h3>
+<div id="answers">`;
+q.a.forEach((a,i)=>{
+html+=`<button class="option" onclick="answer(${i})">${a}</button>`;
+});
+html+=`</div><p id="feedback"></p>
+<button class="action" id="next" style="display:none" onclick="qi++;renderQuestion()">اگلا سوال ←</button>
+</div>`;
+document.getElementById("app").innerHTML=html;
+}
+function answer(i){
+if(answered)return;
+answered=true;
+let q=questions[qi];
+if(i===q.correct)score++;
+document.getElementById("feedback").innerHTML=
+i===q.correct?"✅ درست جواب!":"❌ درست جواب: "+q.a[q.correct];
+document.getElementById("next").style.display="inline-block";
+}
+home();
+</script>
+</body>
+</html>
